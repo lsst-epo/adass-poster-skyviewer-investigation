@@ -1,0 +1,144 @@
+#+TITLE: ADASS Poster
+#+Startup: indent
+#+TODO: TODO(t) | IN_PROGRESS(p) | DONE(d)
+#+TAGS: Bug(b) Improvement(i) Research(r) Experiment(e) Analysys(a)
+
+
+* Summary
+
+Implementation
+
+http://maps.lsst.rocks/hsc/cosmos
+
+** Questions
+
+What is the take away we want?
+
+
+* Skyviewer
+
+** 1. Introduction
+
+Sky Viewer Investigations for LSST EPO
+
+LSST Education & Public Outreach (EPO) reports on the early investigations of using and implementing a skyviewer across it's software systems.
+We research available open-source skyviewer software and identify requirements and possible features for our implementation.
+Over the summer we prototyped an implementation of this using Aladin and Aladin-lite. <this needs information about TNSD design?>
+
+
+LSST Education & Public Outreach (EPO) reports on the early investigations of using and implementing a skyviewer across it's software systems. We research available open-source skyviewer software and identify requirements and possible features for our implementation. Over the summer we prototyped an implementation of this using Aladin and Aladin-lite. <this needs information about TNSD design?>
+
+The LSST software systems make extensive use of Python, 
+with almost all of it initially being developed solely in Python 2. 
+Since LSST will be commissioned when Python 2 is end-of-lifed it is critical 
+that we have all our code support Python 3 before commissioning begins. Over the 
+past year we have made significant progress in migrating the bulk of the 
+code from the Data Management system onto Python 3. This poster presents our 
+migration methodology, and the current status of the port, with our eventual 
+aim to be running completely on Python 3 by early 2018.
+
+** 1. Comparsion 
+
+Modified table from review.
+
+|               | Aladin  | Flat | WorldWideTelescope |
+| Projection    | HEALPix | Flat |                    |
+| Tile Schema   | HiPS    |      |                    |
+| Tile Creation |         |      |                    |
+| Examples      |         |      |                    |
+| Mobile        | Yes     | Yes  | No                 |
+
+
+** 2. Projection
+
+We plan to use HealPix<cite_1>.
+# This projection has a number of benefits.
+It has multiple libraries in Python 3, which has seen extensive use at LSST  and is used in our science notebook investigations<cite_2, cite_3>.
+HiPS and MOC, which use HealPix, are IVOA standards<cite_4, cite_5>.
+HealPix is acceptable for use with the LSST science pipeline<cite_6> and our formal education science notebook investigations.
+HealPix is uniform within the expected coverage of the LSST survey<cite_7 or figure>.
+
+We plan to use HealPix<cite_1>. It has multiple libraries in Python 3, which has seen extensive use at LSST  and is used in our science notebook investigations<cite_2, cite_3>. HiPS and MOC, which use HealPix, are IVOA standards<cite_4, cite_5>. HealPix is acceptable for use with the LSST science pipeline<cite_6> and our formal education science notebook investigations. HealPix is uniform within the expected coverage of the LSST survey<cite_7 or figure>.
+
+** 3. Implementation
+
+We prototyped a skyviewer using Aladin and Aladin Lite <cite_i1, cite_i2>. We used HSC Public Data Release 1 COSMOS data <cite_i3>. This was reprocessed by the LSST DM team using the LSST DM pipeline.
+
+** 3.5 Hybrid
+
+
+Combine Aladin with other technologies.
+
+DES and Deepzoom.
+
+** Aladin
+
+
+** 4. User Interface and Design
+
+*** TNSD
+
+LSST EPO performed user
+
+*** Audience
+
+Through configuration
+
+*** Mobile
+
+** 5. Plan
+
+*** Science Notebooks
+
+*** In View
+
+TNSD figure.
+
+*** Object Slider/Page
+
+TNSD figure.
+
+The object slider provides two views. An information view which provides
+a higher resolution image of the object and further high level information.
+The detail view provides additional scienfic details and infographics.
+
+*** Search & Filters
+
+Paragraph discussion.
+
+*** Collections
+
+*** Citizen Science
+
+HiPS can look terrible and can look weird. Opportunity
+
+* What to choose
+
+1. All sky, not in high resolution.
+2. Deep Drilling
+3. Selection of Formal Education areas with related catalog data.
+
+
+* Layout
+
+** Title and details at top center and right - room for logo
+
+** Bibliography at bottom right
+
+** TNSD in center
+
+** Intro top right
+
+** Top left comparison
+
+** Remaining
+
+Center left
+
+Bottom left
+
+Top center
+
+Bottom center
+
+Center right

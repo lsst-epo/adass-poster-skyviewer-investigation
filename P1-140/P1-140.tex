@@ -1,0 +1,160 @@
+% This is the ADASS_template.tex LaTeX file, 26th August 2016.
+% It is based on the ASP general author template file, but modified to reflect the specific
+% requirements of the ADASS proceedings.
+% Copyright 2014, Astronomical Society of the Pacific Conference Series
+% Revision:  14 August 2014
+
+% To compile, at the command line positioned at this folder, type:
+% latex ADASS_template
+% latex ADASS_template
+% dvipdfm ADASS_template
+% This will create a file called aspauthor.pdf.}
+
+\documentclass[11pt,twoside]{article}
+
+% Do NOT use ANY packages other than asp2014. 
+\usepackage{asp2014}
+
+\aspSuppressVolSlug
+\resetcounters
+
+% References must all use BibTeX entries in a .bibfile.
+% References must be cited in the text using \citet{} or \citep{}.
+% Do not use \cite{}.
+% See ManuscriptInstructions.pdf for more details
+\bibliographystyle{asp2014}
+
+% The ``markboth'' line sets up the running heads for the paper.
+% 1 author: "Surname"
+% 2 authors: "Surname1 and Surname2"
+% 3 authors: "Surname1, Surname2, and Surname3"
+% >3 authors: "Surname1 et al."
+% Replace ``Short Title'' with the actual paper title, shortened if necessary.
+% Use mixed case type for the shortened title
+% Ensure shortened title does not cause an overfull hbox LaTeX error
+% See ASPmanual2010.pdf 2.1.4  and ManuscriptInstructions.pdf for more details
+\markboth{Peterson et al.}{Sky Viewer Investigations for LSST EPO}
+
+\begin{document}
+
+\title{Sky Viewer Investigations for LSST EPO}
+
+% Note the position of the comma between the author name and the 
+% affiliation number.
+% Author names should be separated by commas.
+% The final author should be preceded by "and".
+% Affiliations should not be repeated across multiple \affil commands. If several
+% authors share an affiliation this should be in a single \affil which can then
+% be referenced for several author names.
+% See ManuscriptInstructions.pdf and ASPmanual2010.pdf 3.1.4 for more details
+\author{J.~Matt~Peterson,$^1$ Amanda~E.~Bauer,$^1$, Ben~Emmons,$^1$ Ryan~Bruner,$^2$ Jimmy~Watkins,$^2$ Tom~Gonzalez,$^2$ and Paula~Wellings$^2$}
+\affil{$^1$Large Synoptic Survey Telescope, Tucson, AZ, USA}
+\affil{$^2$Theresa Neil: Strategy + Design, Austin, TX, USA}
+
+% This section is for ADS Processing.  There must be one line per author.
+\paperauthor{J.~Matt~Peterson}{jmatt@lsst.org}{http://orcid.org/0000-0002-6564-6246}{Large Synoptic Survey Telescope}{}{Tucson}{AZ}{85719}{USA}
+\paperauthor{Amanda~E.~Bauer}{abauer@lsst.org}{}{Large Synoptic Survey Telescope}{}{Tucson}{AZ}{85719}{USA}
+\paperauthor{Ben~Emmons}{bemmons@lsst.org}{}{Large Synoptic Survey Telescope}{}{Tucson}{AZ}{85719}{USA}
+\paperauthor{Ryan~Bruner}{ryan@strategyplusdesign.com}{}{Theresa Neil: Strategy + Design}{}{Austin}{TX}{}{USA}
+\paperauthor{Jimmy~Watkins}{jimmy.what@gmail.com}{}{Theresa Neil: Strategy + Design}{}{Austin}{TX}{}{USA}
+\paperauthor{Tom~Gonzalez}{tgonzalez@brightpointinc.com}{}{Theresa Neil: Strategy + Design}{}{Austin}{TX}{}{USA}
+\paperauthor{Paula~Wellings}{paula@strategyplusdesign.com}{}{Theresa Neil: Strategy + Design}{}{Austin}{TX}{}{USA}
+
+\begin{abstract}
+The Large Synoptic Survey Telescope (LSST) is an 8-m optical ground-based telescope being constructed on Cerro Pachon in Chile. LSST will survey half the sky every few nights in six optical bands. LSST Education and Public Outreach (EPO) is investigating requirements and technologies to create a next generation sky viewer. We discuss and survey current sky viewer technologies and identify new features required for an LSST EPO sky viewer.
+\end{abstract}
+
+\section{Introduction}
+LSST Education and Public Outreach (EPO) reports on the early investigations of using and implementing a skyviewer across its software systems. We researched available open-source skyviewer software and identify requirements and possible features for our implementation. Over the summer we prototyped an implementation of this using Aladin and Aladin-lite (\citet{2014ASPC..485..277B}. Independent of the prototyping we contracted design work and user experience testing from Theresa Neil: Strategy + Design (TNSD)\footnotemark[1] which resulted in user interface features.
+
+\footnotetext[1]{\url{http://www.theresaneil.com/}}
+
+\section{Requirements}
+The skyviewer has three software engineering requirements.
+\begin{enumerate}
+\item Build on an existing sustainable open-source project.
+\item Simple to extend and integrate with existing tools and libraries.
+\item Usable in multiple contexts.
+\end{enumerate}
+
+\section{Implementation}
+Aladin v10.009 and Aladin Lite were used to create a prototype survey with HSC Public Data Release 1 UDEEP data (3.5 sq. deg.) (\citet{2017arXiv170208449A}). This was reprocessed by the LSST DM team using the LSST DM pipeline. It took 16 hours using 8 vCPUs and 16 GB of RAM to process 127 GB of calibrated exposure FITS images across three bands (\emph{i}, \emph{r}, \emph{g}) into 16.7 GB HiPS color PNG image survey (Norder=3,12).
+Aladin and Aladin Lite use HEALPix (\citet{2007MNRAS.381..865C}). It is supported in multiple libraries in Python 3, which has seen extensive use at LSST and is used in our Jupyter\footnotemark[2] (\citet{PER-GRA:2007}) science notebook investigations. HiPS\footnotemark[3] and MOC\footnotemark[4], which use HEALPix, are IVOA standards we plan to support. Finally, HEALPix is acceptable for use with the LSST science platform and our formal education teams.
+
+\footnotetext[2]{\url{http://jupyter.org/}}
+\footnotetext[3]{Hierarchical Progressive Survey \url{http://www.ivoa.net/documents/HiPS/}}
+\footnotetext[4]{HEALPix Multi-Order Coverage map \url{http://www.ivoa.net/documents/MOC/}}
+
+\section{Comparison}
+
+\begin{table}[!ht]
+\smallskip
+\begin{center}
+{\small
+ \begin{tabular}{|l|l|l|l|l|}  % l = left, c = centered
+\hline
+~ & \begin{tabular}{@{}l@{}}Aladin \& \\ Aladin-lite\end{tabular}
+  & \begin{tabular}{@{}l@{}}Leaflet based \\ skyviewers\end{tabular}
+  & \begin{tabular}{@{}l@{}}World \\ Wide \\ Telescope (WWT)\end{tabular} \\
+\hline
+Projection & HEALPix & Mercator & TOAST \\
+\hline
+Tile Manager & HiPS & Leaflet & WWT \\
+\hline
+Tile Creation & Aladin & ImageMagick, custom & Montage \\
+\hline
+Examples
+& \begin{tabular}{@{}l@{}}ESA,\footnotemark[5] CDS,\footnotemark[6] \\ DES,\footnotemark[7] LIGO\footnotemark[8]\end{tabular}
+& \begin{tabular}{@{}l@{}}DECaLS,\footnotemark[9] CFHTLS,\footnotemark[10] \\ HSC-SSP,\footnotemark[11] NASA, SDSS\footnotemark[12]\end{tabular}
+    & WWT web client \\
+    \hline
+\end{tabular}
+
+  }
+  
+\end{center}
+\caption{Types of skyviewers}
+\label{table:p140_comparison}
+\end{table}
+
+\noindent We compare three types of skyviewers in table \ref{table:p140_comparison}. Aladin and Aladin Lite, World Wide Telescope (WWT) and Leaflet based skyviewers.
+\footnotetext[5]{European Space Agency}
+\footnotetext[6]{Centre de Donn\~{A}es astronomiques de Strasbourg}
+\footnotetext[7]{Dark Energy Survey}
+\footnotetext[8]{Laser Interferometer Gravitational-Wave Observatory}
+\footnotetext[9]{DECam Legacy Survey}
+\footnotetext[10]{Canada-France-Hawaii Telescope Legacy Survey}
+\footnotetext[11]{Hyper Suprime-Cam Subaru Strategic Program}
+\footnotetext[12]{Sloan Digital Sky Survey}
+
+\section{User Interface}
+
+EPO contracted design work and user experience testing from TNSD. Through this user experience testing TNSD identified weaknesses with existing Skyviewer design and iteratively improved the design. The figure \ref{P1-140_fig1} is the result. Some specific features are a gallery, object and detail slider, search, filters and the ability to create collections.
+
+\section{Features}
+These design features are identified in figure \ref{P1-140_fig1}.
+\begin{enumerate}
+\item Gallery
+\item Object slider
+\item Detail slider
+\item Search
+\item Filter
+\item Collections
+\end{enumerate}
+
+\articlefigure{P1-140_f1.eps}{P1-140_fig1}{Planned design mockup for the LSST EPO Skyviewer.}
+
+\section{Conclusion}
+EPO plans to implement this as modular open-source software components. Components should be reusable for different audiences through configuration and extension. Components will be used by our portal and science notebook systems. Since our science notebook system will extend the LSST DM science platform\footnotemark[13], our components will be available to LSST scientists.
+
+\footnotetext[13]{\url{https://ldm-542.lsst.io/}}
+
+Though we plan to use Aladin and Aladin Lite, some improvements are required. Aladin Lite and HiPS do not support dynamic image creation using individual bands.
+
+\acknowledgements This material is based upon work supported in part by the Na- tional Science Foundation through Cooperative Agreement 1258333 managed by the Association of Universities for Research in Astronomy (AURA), and the Department of Energy under Contract No. DE-AC02-76SF00515 with the SLAC National Accel- erator Laboratory. Additional LSST funding comes from private donations, grants to universities, and in-kind support from LSSTC Institutional Members.
+
+We would like to thank Tim Jenness for encouraging us to publish our investigations.
+
+\bibliography{P1-140}  % For BibTex
+
+\end{document}
