@@ -47,7 +47,7 @@
 % authors share an affiliation this should be in a single \affil which can then
 % be referenced for several author names.
 % See ManuscriptInstructions.pdf and ASPmanual2010.pdf 3.1.4 for more details
-\author{J.~Matt~Peterson,$^1$ Amanda~E.~Bauer,$^1$, Ben~Emmons,$^1$ Ryan~Bruner,$^2$ Jimmy~Watkins,$^2$ Tom~Gonzalez,$^2$ and Paula~Wellings$^2$}
+\author{J.~Matt~Peterson,$^1$ Amanda~E.~Bauer,$^1$ Ben~Emmons,$^1$ Ryan~Bruner,$^2$ Jimmy~Watkins,$^2$ Tom~Gonzalez,$^2$ and Paula~Wellings$^2$}
 \affil{$^1$Large Synoptic Survey Telescope, Tucson, AZ, USA}
 \affil{$^2$Theresa Neil: Strategy + Design, Austin, TX, USA}
 
@@ -65,7 +65,7 @@ The Large Synoptic Survey Telescope (LSST) is an 8-m optical ground-based telesc
 \end{abstract}
 
 \section{Introduction}
-LSST Education and Public Outreach (EPO) reports on the early investigations of using and implementing a skyviewer across its software systems. We researched available open-source skyviewer software and identify requirements and possible features for our implementation. Over the summer we prototyped an implementation of this using Aladin and Aladin-lite (\citet{2014ASPC..485..277B}. Independent of the prototyping we contracted design work and user experience testing from Theresa Neil: Strategy + Design (TNSD)\footnotemark[1] which resulted in user interface features.
+LSST Education and Public Outreach (EPO) reports on the early investigations of using and implementing a skyviewer across its software systems. We researched available open-source skyviewer software and identify requirements and possible features for our implementation \citep{2017LSST.1.LSE-89,2017LSST.1.LEP-31}. Over the summer we prototyped an implementation of this using Aladin and Aladin-lite \citep{2014ASPC..485..277B}. Independent of the prototyping we contracted design work and user experience testing from Theresa Neil: Strategy + Design (TNSD)\footnotemark[1] which resulted in user interface features.
 
 \footnotetext[1]{\url{http://www.theresaneil.com/}}
 
@@ -78,12 +78,8 @@ The skyviewer has three software engineering requirements.
 \end{enumerate}
 
 \section{Implementation}
-Aladin v10.009 and Aladin Lite were used to create a prototype survey with HSC Public Data Release 1 UDEEP data (3.5 sq. deg.) (\citet{2017arXiv170208449A}). This was reprocessed by the LSST DM team using the LSST DM pipeline. It took 16 hours using 8 vCPUs and 16 GB of RAM to process 127 GB of calibrated exposure FITS images across three bands (\emph{i}, \emph{r}, \emph{g}) into 16.7 GB HiPS color PNG image survey (Norder=3,12).
-Aladin and Aladin Lite use HEALPix (\citet{2007MNRAS.381..865C}). It is supported in multiple libraries in Python 3, which has seen extensive use at LSST and is used in our Jupyter\footnotemark[2] (\citet{PER-GRA:2007}) science notebook investigations. HiPS\footnotemark[3] and MOC\footnotemark[4], which use HEALPix, are IVOA standards we plan to support. Finally, HEALPix is acceptable for use with the LSST science platform and our formal education teams.
-
-\footnotetext[2]{\url{http://jupyter.org/}}
-\footnotetext[3]{Hierarchical Progressive Survey \url{http://www.ivoa.net/documents/HiPS/}}
-\footnotetext[4]{HEALPix Multi-Order Coverage map \url{http://www.ivoa.net/documents/MOC/}}
+Aladin v10.009 and Aladin Lite were used to create a prototype survey with HSC Public Data Release 1 UDEEP COSMOS data (2 sq. deg.) \citep{2017arXiv170208449A}. This was reprocessed by the LSST DM team using the LSST DM pipeline \citep{2015arXiv151207914J}. It took 16 hours on a single node using 8 vCPUs and 16 GB of RAM to process 127 GB of calibrated exposure FITS images across three bands (\emph{i}, \emph{r}, \emph{g}) into 16.7 GB HiPS \citep{2015A&A...578A.114F} color PNG image survey (HiPS Norder=3-12).
+Aladin and Aladin Lite use HEALPix \citep{2007MNRAS.381..865C}. It is supported in multiple libraries in Python 3, which has seen extensive use at LSST \citep{P1-123_adassxxvii} and is used in our Jupyter \citep{PER-GRA:2007} science notebook investigations. HiPS and MOC \citep{2015A&A...578A.114F}, which use HEALPix, are IVOA standards we plan to support. Finally, HEALPix is acceptable for use with the LSST science platform and our formal education teams.
 
 \section{Comparison}
 
@@ -104,50 +100,52 @@ Tile Manager & HiPS & Leaflet & WWT \\
 Tile Creation & Aladin & ImageMagick, custom & Montage \\
 \hline
 Examples
-& \begin{tabular}{@{}l@{}}ESA,\footnotemark[5] CDS,\footnotemark[6] \\ DES,\footnotemark[7] LIGO\footnotemark[8]\end{tabular}
-& \begin{tabular}{@{}l@{}}DECaLS,\footnotemark[9] CFHTLS,\footnotemark[10] \\ HSC-SSP,\footnotemark[11] NASA, SDSS\footnotemark[12]\end{tabular}
+& \begin{tabular}{@{}l@{}}ESA, CDS,\footnotemark[2] \\ DES,\footnotemark[3] LIGO\footnotemark[4]\end{tabular}
+& \begin{tabular}{@{}l@{}}DECaLS,\footnotemark[5] CFHTLS,\footnotemark[6] \\ HSC-SSP,\footnotemark[7] NASA, SDSS\footnotemark[8]\end{tabular}
     & WWT web client \\
     \hline
 \end{tabular}
 
   }
-  
 \end{center}
 \caption{Types of skyviewers}
 \label{table:p140_comparison}
 \end{table}
 
-\noindent We compare three types of skyviewers in table \ref{table:p140_comparison}. Aladin and Aladin Lite, World Wide Telescope (WWT) and Leaflet based skyviewers.
-\footnotetext[5]{European Space Agency}
-\footnotetext[6]{Centre de Donn\~{A}es astronomiques de Strasbourg}
-\footnotetext[7]{Dark Energy Survey}
-\footnotetext[8]{Laser Interferometer Gravitational-Wave Observatory}
-\footnotetext[9]{DECam Legacy Survey}
-\footnotetext[10]{Canada-France-Hawaii Telescope Legacy Survey}
-\footnotetext[11]{Hyper Suprime-Cam Subaru Strategic Program}
-\footnotetext[12]{Sloan Digital Sky Survey}
+\noindent We compare three types of skyviewers in table \ref{table:p140_comparison}. Aladin and Aladin Lite, World Wide Telescope (WWT) \citep{Gray:2002:WT:581571.581572} and Leaflet based skyviewers.
+\footnotetext[2]{Centre de Donn\~{A}es astronomiques de Strasbourg}
+\footnotetext[3]{Dark Energy Survey}
+\footnotetext[4]{Laser Interferometer Gravitational-Wave Observatory}
+\footnotetext[5]{DECam Legacy Survey}
+\footnotetext[6]{Canada-France-Hawaii Telescope Legacy Survey}
+\footnotetext[7]{Hyper Suprime-Cam Subaru Strategic Program}
+\footnotetext[8]{Sloan Digital Sky Survey}
 
 \section{User Interface}
 
 EPO contracted design work and user experience testing from TNSD. Through this user experience testing TNSD identified weaknesses with existing Skyviewer design and iteratively improved the design. The figure \ref{P1-140_fig1} is the result. Some specific features are a gallery, object and detail slider, search, filters and the ability to create collections.
 
-\section{Features}
-These design features are identified in figure \ref{P1-140_fig1}.
-\begin{enumerate}
-\item Gallery
-\item Object slider
-\item Detail slider
-\item Search
-\item Filter
-\item Collections
-\end{enumerate}
+\begin{figure}[!ht]
+  \plotone{P1-140_f1.eps}
+  \caption{Planned design mockup features for the LSST EPO Skyviewer. Features are labeled as Gallery(1), Object slider(2), Detail slider(3), Search(4), Filter(5) and Collections(6).}
+  \label{P1-140_fig1}
+\end{figure}
 
-\articlefigure{P1-140_f1.eps}{P1-140_fig1}{Planned design mockup for the LSST EPO Skyviewer.}
+
+%% \articlefigure{P1-140_f1.eps}{P1-140_fig1}{Planned design mockup features for the LSST EPO Skyviewer.}
+
+%% \begin{table}[!ht]
+%%   \small {
+%%     \begin{tabular}{ll}
+%%       \begin{tabular}{@{}l@{}}1. Gallery \\ 2. Object slider \\ 3. Detail slider \end{tabular}
+%%       & \begin{tabular}{@{}l@{}}4. Search \\ 5. Filter \\ 6. Collections \end{tabular}
+%%     \end{tabular}
+%%   }
+%% \end{table}
+
 
 \section{Conclusion}
-EPO plans to implement this as modular open-source software components. Components should be reusable for different audiences through configuration and extension. Components will be used by our portal and science notebook systems. Since our science notebook system will extend the LSST DM science platform\footnotemark[13], our components will be available to LSST scientists.
-
-\footnotetext[13]{\url{https://ldm-542.lsst.io/}}
+EPO plans to implement this as modular open-source software components. Components should be reusable for different audiences through configuration and extension. Components will be used by our portal and science notebook systems. Since our science notebook system will extend the LSST DM science platform\citep{2017LSST.1.LDM-542}, our components will be available to LSST scientists.
 
 Though we plan to use Aladin and Aladin Lite, some improvements are required. Aladin Lite and HiPS do not support dynamic image creation using individual bands.
 
