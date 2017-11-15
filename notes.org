@@ -142,3 +142,48 @@ Top center
 Bottom center
 
 Center right
+
+* Review
+
+** Reviewer #1 Comments
+
+**Citation improvements**
+- [X] There are two commas after the second author.
+- [X] The Aladin reference looks weird in the introduction with the parens in the wrong place. I think you want `\citep`.
+- [X] Aihara reference should use `\citepb`. Also, please use "and others" in the bib file so that all authors are not listed.
+- [X] Cite HiPS paper on first usage. The term appears from nowhere in section 3. It's later a footnote to the document but please cite a real paper. Also for MOCS.
+- [X] If you are going to mention Python 3 used extensively at LSST, feel free to cite my paper (PUB-46).
+- [X] In the table, I don't think ESA and CDS need footnotes as such but maybe those could be URL footnotes to the ESASky page? Real scientific references preferred though.
+- [X] `\citep` for HEALPix ref.
+- [X] Cite LEP-31 and/or LSE-89 similar to LDM-542.
+- [X] Cite Juric et al 2015 DM paper when talking about DM team. Expand "DM" on first usage. Consider citing Bosch et al 2017 HSC pipeline paper after "LSST DM pipeline" with
+```
+\citep[see e.g.][]{...}
+```
+
+**Other**
+- [X] Was 16GB the peak usage and was this on a single node? Or 8 nodes all using 16GB peak?
+- [X] The introduction is more of a conclusion rather than background. Can you please give introduce why you want a sky viewer and how you expect EPO users to interact with LSST data?
+- [X] Can you expand on what contexts "multiple" means in section 2?
+- [X] "Norder" seems strange typography. Should that be a subscript?
+- [X] I'd like some narrative comparison giving pros and minuses of the approaches in section 4.
+- [X] What items identified by TNSD are lacking in current tools? I think it's important to know that.
+- [X] Section 6 probably doesn't need to exist as it's really a continuation of the TNSD discussion. I would put those numbered elements in the figure caption and just link to fig 1 at end of section 5.
+- [X] Please cite LDM-542 as a document and not a footnote. Put the URL in the URL part of the bib entry.
+- [X] The final sentence of conclusions came from nowhere. It isn't a conclusion that is summarizing any previous content. Please move that to the comparison section. Say there that this is a feature that we really need. You can reiterate it in the conclusions.
+
+Added by me.
+- [X] Add narrative between sections that makes it more cohesive.
+
+** Reviewer #2 Comments
+
+- [X] Make sure you use "sky viewer" (2 words) where ever you are not referring explicitly to the LSST product (I spot one instance in the Intro). That way you are making a clear distinction between all the options and the eventual "LSST Skyviewer" (which might also have a different name in the future). Or... Ben's suggestion was to use "Sky Atlas" as a generic term (which I don't like) and I suggested using "Sky Map" or "sky map technologies." Maybe Tim Jenness has an opinion on this?
+- [X] Regarding Tim's comment on the intro, there are a series of requirements listed in LSE-89 regarding an EPO Portal full-sky viewer. The sentence about TNSD can be expanded as well, something along the lines of... We contracted Theresa Neil: Strategy + Design (TNSD) to build a Proof of Concept sky viewer to test with a variety of intended users of the EPO Portal in order to understand and achieve the needs of our sky viewer audiences
+- [X] Section 2, number 3: does this mean usable on a mobile platform?
+- [X] Section 3, first sentence refers to "prototype survey" - I think you mean that we wanted to have a sample dataset of color images to populate a prototype sky viewer and the HSC data released was used after reprocessing, etc... Is that right?
+- [X] You use "It" a lot in this section and it's not clear where you are referring to the data or the sky viewer or something else... avoid using pronouns, especially "it", whenever possible.
+- [X] Using text to give reasons for the decisions you make regarding the sky viewer options in Section 4 is more important (I think for this paper) than what you currently state in Section 5 about the UI (which also does not have any justification for why the features you list in Section 6 were implemented)
+- [X] Section 6 can be scrapped and the list included in the caption of the figure
+- [X] Conclusion: use of "this" in the first sentence is ambiguous.
+
+
