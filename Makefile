@@ -38,4 +38,5 @@ clean :
 	rm -f extra/ADASS2017_author_template/*.pyc
 
 compress : clean
+	cp ./P1-140/P1-140.pdf ./P1-140v$(VERSION).pdf
 	tar -cvzf P1-140_v$(VERSION).tar.gz P1-140
