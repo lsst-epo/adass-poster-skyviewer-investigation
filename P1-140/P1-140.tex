@@ -61,28 +61,25 @@
 \paperauthor{Paula~Wellings}{paula@strategyplusdesign.com}{}{Theresa Neil: Strategy + Design}{}{Austin}{TX}{}{USA}
 
 \begin{abstract}
-The Large Synoptic Survey Telescope (LSST) is an 8-m optical ground-based telescope being constructed on Cerro Pachon in Chile. LSST will survey half the sky every few nights in six optical bands. LSST Education and Public Outreach (EPO) is investigating requirements and technologies to create a next generation sky viewer. We discuss and survey current sky viewer technologies and identify new features required for an LSST Skyviewer.
+The Large Synoptic Survey Telescope (LSST) is an 8-m optical ground-based telescope being constructed on Cerro Pachon in Chile. LSST will survey half the sky every few nights in six optical bands. LSST Education and Public Outreach (EPO) is investigating requirements and technologies to create a next generation sky viewer. We discuss and survey current sky viewer technologies and identify new features required for an LSST EPO Skyviewer.
 \end{abstract}
 
 \section{Introduction}
-LSST Education and Public Outreach (EPO) reports on the early investigations of using and implementing a sky viewer across its software systems. We contracted with Theresa Neil: Strategy + Design (TNSD)\footnotemark[1] to develop a proof of concept sky viewer to test with a variety of intended users of the EPO Portal in order to understand and achieve the needs of our sky viewer audiences. We researched available open-source sky viewer software to identify software engineer requirements and features for our implementation \citep{2017LSST.1.LSE-89,2017LSST.1.LEP-31}. Over the summer we prototyped an implementation of this using Aladin and Aladin-lite \citep{2014ASPC..485..277B} and evaluated other available tools.
+LSST Education and Public Outreach (EPO) reports on the early investigations of using and implementing a sky viewer across its software systems. We contracted with Theresa Neil: Strategy + Design (TNSD)\footnotemark[1] to develop a proof of concept sky viewer to test with a variety of intended users of the EPO Portal in order to understand and achieve the needs of our sky viewer audiences. We researched available open-source sky viewer software to identify software engineer requirements and features for our implementation \citep{2017LSST.1.LSE-89,2017LSST.1.LEP-31}. Over the summer of 2017 we prototyped an implementation of this using Aladin and Aladin-lite \citep{2014ASPC..485..277B} and evaluated other available tools.
 
 \footnotetext[1]{\url{http://www.theresaneil.com/}}
 
 \section{Requirements}
-The sky viewer has three software engineering requirements.
+The LSST EPO Skyviewer has three software engineering requirements:
 \begin{enumerate}
-\item Build on an existing sustainable open-source project.
+\item Built on an existing sustainable open-source projects.
 \item Simple to extend and integrate with existing tools and libraries.
 \item Usable in multiple contexts (e.g. mobile, web, science notebooks, planetarium).
 \end{enumerate}
 
 \section{Implementation}
-Aladin v10.009 and Hipsgen were used to create a prototype survey and sky viewer with HSC Public Data Release 1 UDEEP COSMOS data (2 sq. deg.) \citep{2017arXiv170208449A}. This was reprocessed by the LSST DM team using the LSST DM pipeline \citep{2015arXiv151207914J}. Hierarchical Progressive Survey \citep[HiPS,][]{2015A&A...578A.114F} creation took 16 hours on a single node using 8 vCPUs and 16 GB of RAM to process 127 GB of calibrated exposure FITS images across three bands (\emph{i}, \emph{r}, \emph{g}) into a 16.7 GB color PNG image HiPS (HiPS Norder=3-12). To create multicolor HiPS individual monocolor HiPS must first be created. From these monocolor HiPS a multicolor HiPS is then composed. This method increases linearly with disk usage and processing time for each band being processed. This is in contrast to other survey creation methods which do not require the creation of intermediate monocolor surveys.
+Aladin v10.009 and Hipsgen were used to create a prototype survey and sky viewer with HSC Public Data Release 1 UDEEP COSMOS data (2 sq. deg.) \citep{2017arXiv170208449A}. This was reprocessed by the LSST Data Management (DM) team using the LSST DM pipeline \citep{2015arXiv151207914J}. Hierarchical Progressive Survey \citep[HiPS,][]{2015A&A...578A.114F} creation took 16 hours on a single node using 8 vCPUs and 16 GB of RAM to process 127 GB of calibrated exposure FITS images across three bands (\emph{i}, \emph{r}, \emph{g}) into a 16.7 GB color PNG image HiPS (HiPS Norder=3-12). To create multicolor HiPS individual monocolor HiPS must first be created. From these monocolor HiPS a multicolor HiPS is then composed. This method increases linearly with disk usage and processing time for each band being processed. This is in contrast to other survey creation methods which do not require the creation of intermediate monocolor surveys.
 \section{Comparison}
-Aladin and Aladin Lite use HEALPix \citep{2007MNRAS.381..865C}. HEALPix is supported in multiple libraries in Python 3. Python 3 has seen extensive use at LSST \citep{P1-123_adassxxvii} and is used in our Jupyter \citep{PER-GRA:2007} science notebook investigations. HiPS and MOC \citep{2015A&A...578A.114F}, which use HEALPix, are IVOA standards we plan to support. Finally, HEALPix is acceptable for use with the LSST science platform \citep{2017LSST.1.LDM-542} and our formal education teams.
-
-Montage \citep{2017PASP..129e8006B} was evaluated to create Tessellated Octahedral Adaptive Subdivision Transform (TOAST) for the World Wide Telescope (WWT) \citep{2012ASPC..461..267G} and Leaflet based surveys. Montage supports HEALPix FITS files as input data but it does not create HiPS. WWT, TOAST and Montage were not chosen for two reasons. First, Montage does not create HiPS. Second, TOAST has no viable stand-alone viewer and is only available as part of WWT as a monolithic application. This makes it difficult to customize and provide a sky viewer that is usable in multiple contexts. LSST EPO is interested in WWT support for data cubes, 3D and virtual reality.
 \begin{table}[!ht]
 \begin{center}
 {\small
@@ -106,10 +103,9 @@ Examples
 \end{tabular}
   }
 \end{center}
-\caption{Types of sky viewers}
+\caption{Comparison of three types of sky viewers.}
 \label{table:p140_comparison}
 \end{table}
-\noindent We compare three types of sky viewers in table \ref{table:p140_comparison}: Aladin and Aladin Lite, World Wide Telescope (WWT) and Leaflet based sky viewers.
 \footnotetext[2]{Centre de Donn\~{A}es astronomiques de Strasbourg}
 \footnotetext[3]{Dark Energy Survey}
 \footnotetext[4]{Laser Interferometer Gravitational-Wave Observatory}
@@ -118,13 +114,16 @@ Examples
 \footnotetext[7]{Hyper Suprime-Cam Subaru Strategic Program}
 \footnotetext[8]{Sloan Digital Sky Survey}
 
+\noindent Aladin and Aladin Lite use HEALPix \citep{2007MNRAS.381..865C}. HEALPix is supported in multiple libraries in Python 3. Python 3 has seen extensive use at LSST \citep{P1-123_adassxxvii} and is used in our Jupyter \citep{PER-GRA:2007} science notebook investigations. HiPS and  Multi-Order Coverage map \citep[MOC,][]{2015A&A...578A.114F}, which use HEALPix, are International Virtual Observatory Alliance (IVOA) standards we plan to support. Finally, HEALPix is acceptable for use with the LSST science platform \citep{2017LSST.1.LDM-542} and our formal education teams.
+
+Montage \citep{2017PASP..129e8006B} was evaluated to create Tessellated Octahedral Adaptive Subdivision Transform (TOAST) for the World Wide Telescope (WWT) \citep{2012ASPC..461..267G} and Leaflet based surveys. Montage supports HEALPix FITS files as input data but it does not create HiPS. WWT, TOAST and Montage were not chosen for two reasons. First, Montage does not create HiPS. Second, TOAST has no viable stand-alone viewer and is only available as part of WWT as a monolithic application. This makes it difficult to customize and provide a sky viewer that is usable in multiple contexts. LSST EPO is interested in WWT support for data cubes, 3D and virtual reality.
 \section{User Interface}
 \begin{figure}[!ht]
   \plotone{P1-140_f1.eps}
-  \caption{Planned design mockup features for the LSST Skyviewer. Features are labeled as Gallery(1), Object slider(2), Detail slider(3), Search(4), Filter(5) and Collections(6).}
+  \caption{Planned design mockup features for the LSST EPO Skyviewer. Features are labeled as Gallery(1), Object slider(2), Detail slider(3), Search(4), Filter(5) and Collections(6).}
   \label{P1-140_fig1}
 \end{figure}
-EPO contracted design work and user experience testing from TNSD. Through user experience testing TNSD identified weaknesses with existing sky viewer design and iteratively improved the design. Users found sky viewer use was not intuitive and simple. This was resolved by adding a gallery and search. Users wanted information about the object being viewed. This was resolved by adding the object and detail sliders. Finally users wanted a way to filter and save what they viewed. This was resolved by adding filters and collections. The figure \ref{P1-140_fig1} is the result.
+\noindent EPO contracted design work and user experience testing from TNSD. Through user experience testing, TNSD identified improvements with existing sky viewer design and iteratively improved the design. Users found sky viewer use was not intuitive and simple. This was resolved by adding a gallery panel displaying objects in view and a search function. Users wanted information about the object being viewed. This was resolved by adding the object and detail sliders. Finally, users wanted a way to filter and save what they viewed. This was resolved by adding filters and collections. Figure \ref{P1-140_fig1} is the result of this iterative design and user testing.
 
 %% \articlefigure{P1-140_f1.eps}{P1-140_fig1}{Planned design mockup features for the LSST Skyviewer.}
 
@@ -138,13 +137,13 @@ EPO contracted design work and user experience testing from TNSD. Through user e
 %% \end{table}
 
 \section{Conclusion}
-EPO plans to implement the LSST Skyviewer as modular open-source software components. These components will build on IVOA standards and should be reusable for different audiences through configuration and extension. Components will be used by our portal and science notebook systems. Since our science notebook system will extend the LSST science platform, our components will be available to LSST scientists.
+EPO plans to implement the LSST EPO Skyviewer as modular open-source software components. These components will build on IVOA standards and should be reusable for different audiences through configuration and extension. Components will be used by the EPO Portal and science notebook systems. Since our science notebook system will extend the LSST science platform, our components will be available to LSST scientists.
 
 We plan to use Aladin Lite using HiPS. Improvements in either Hipsgen or Montage to render HiPS more efficiently are necessary. Additionally, WWT using TOAST may still be considered as an alternative if there is a stand-alone viewer.
 
 \acknowledgements This material is based upon work supported in part by the Na- tional Science Foundation through Cooperative Agreement 1258333 managed by the Association of Universities for Research in Astronomy (AURA), and the Department of Energy under Contract No. DE-AC02-76SF00515 with the SLAC National Accel- erator Laboratory. Additional LSST funding comes from private donations, grants to universities, and in-kind support from LSSTC Institutional Members.
 
-We would like to thank Tim Jenness for encouraging us to publish our investigations.
+We thank Tim Jenness for encouraging us to publish our investigations.
 
 \bibliography{P1-140}  % For BibTex
 
