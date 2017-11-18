@@ -1,4 +1,4 @@
-VERSION := 4
+VERSION := 5
 
 all : link build check compress
 .PHONY: all link build check compress
